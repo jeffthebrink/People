@@ -1,5 +1,4 @@
 import jodd.json.JsonSerializer;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -33,21 +32,18 @@ public class Main {
                 if (!countryAndNameHash.containsKey(key)) {
                     Person person = new Person(columns[1], columns[2], columns[4]);
                     ArrayList<Person> nameArrayList = new ArrayList<>();
-                    nameArrayList.add(person); // problem here, adding new value into each hashmap key
+                    nameArrayList.add(person);
                     countryAndNameHash.put(key, nameArrayList);
                 }
-                else if (countryAndNameHash.containsKey(key)) {
+                else {
                     ArrayList<Person> nameArrayList = new ArrayList<>();
                     Person person = new Person(columns[1], columns[2], columns[4]);
                     nameArrayList.add(person);
                     countryAndNameHash.get(key).add(0, person);
                 }
-
             }
         }
-
         scanner.close();
-
         for (ArrayList<Person> people : countryAndNameHash.values()) {
             Collections.sort(people);
         }
